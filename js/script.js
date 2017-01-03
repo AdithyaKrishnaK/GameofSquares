@@ -20,35 +20,35 @@ function obstruct(){
 for (r=9;r<13;r++){
 for (i = 2; i < 6; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     o.style.backgroundImage="url('stone2.jpg')";
+     o.style.backgroundImage="url('lib/texture/stone2.jpg')";
      o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
 for (r=9;r<13;r++){
 for (i = 9; i < 13; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     o.style.backgroundImage="url('stone2.jpg')";
+     o.style.backgroundImage="url('lib/texture/stone2.jpg')";
      o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
 for (r=9;r<13;r++){
 for (i = 16; i < 20; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     o.style.backgroundImage="url('stone2.jpg')";
+     o.style.backgroundImage="url('lib/texture/stone2.jpg')";
       o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
 for (r=3;r<7;r++){
 for (i = 20; i < 24; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     o.style.backgroundImage="url('stone2.jpg')";
+     o.style.backgroundImage="url('lib/texture/stone2.jpg')";
      o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
 for (r=2;r<4;r++){
 for (i = 2; i < 16; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     o.style.backgroundImage="url('stone2.jpg')";
+     o.style.backgroundImage="url('lib/texture/stone2.jpg')";
      o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
