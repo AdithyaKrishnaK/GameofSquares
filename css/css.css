@@ -1,0 +1,85 @@
+textarea{
+	width:275px;
+	height:539px;
+	padding:8px 15px;
+	position:absolute;
+	top:68.5px;
+	font-size:20px;
+	color:blue;
+	left:10px;}
+
+#content button{
+	width:307px;
+	background-color: #4CAF50; 
+	border: none;
+	position:absolute;
+	top:10px;
+	left:10px;
+    	color: white;
+    	padding: 15px 32px;
+    	text-align: center;
+    	text-decoration: none;
+   	display: inline-block;
+    	font-size: 24px;}
+
+table{
+	background-color:#FF5733;
+	float:left;
+	position:absolute;
+	top:10px;
+	right:10px;
+	border-collapse:collapse;
+	opacity:0.4;}
+
+td{
+	border:1px solid #C0B9B8;
+	padding:20px;
+	transition:background-color 4s}
+
+body{
+	background-image:url("stone.jpg");}
+
+@keyframes movement{
+	 from {background-color: #FF5733;}
+   	 to {background-color: yellow;}}
+
+@keyframes comp{
+	 from {background-color: #13EEF1;}
+   	 to {background-color: #FFFFFF;}}
+#message{
+	overflow:auto;
+	position:absolute;
+	padding:10px;
+	height:500px;
+	width:600px;
+	top:50px;
+	left:450px;
+	background-color:white;}
+#message_content{
+	position:absolute;
+	top:10px;}
+#close_button{
+	position: absolute;
+	right:10px;
+	border:none;
+	top:10px;
+	padding:5px 10px;
+	color: white;
+	background-color: #4CAF50; 
+       	text-align: center;
+    	text-decoration: none;
+   	display: inline-block;
+    	font-size: 16px;}
+
+#message_content{
+	font-size:18px;
+	font-family: Arial;}
+p{
+	font-family: Arial;}
+.f{
+	padding-left: 10px;
+	font-family: Arial;}
+h4{
+	font-family: Arial;}
+.t{
+	font-family: Arial;}

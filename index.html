@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> The Game of Squares</title>
+
+<script src="script.js">
+</script>
+</head>
+
+
+<body onload="loaded()"><div>
+<div id="content" style="opacity:0.4;"><button onclick="execute()" id="ebutton">Execute</button>
+<textarea id="e"></textarea></div>
+<table id="environment">
+</table></div>
+
+
+<div id="message">
+<p id="message_content">
+<h2>Instructions</h2><div class="t">
+Your aim is to guide the yellow square to the blue one by programming the path of the yellow square. Here are the commands that you can use -</div>
+<br><div class="f">
+<b>walk(20);</b> <div style="text-indent: 15px;">- This means that the yellow square will move 20 steps foreward.</div><br>
+<b>turn(N);</b> <div style="text-indent: 15px;">- This means that the yellow square will move foreward the next time it moves. This is default direction.</div><br>
+<b>turn(E);</b> <div style="text-indent: 15px;">- This means that the yellow square will move towards right the next time it moves.</div><br>
+<b>turn(S);</b> <div style="text-indent: 15px;">- This means that the yellow square will move towards backwards the next time it moves.</div><br>
+<b>turn(W);</b> <div style="text-indent: 15px;">- This means that the yellow square will move towards left the next time it moves.</div><br>
+<b>end()</b> <div style="text-indent: 15px;">- This marks the end the program.</div></div>
+<div class="t"><br>For example:</div>
+<h4>
+walk(3);<br>
+turn(E);<br>
+walk(4);<br>
+end()
+</h4>
+<div class="t">This means that the yellow square will move 3 blocks foreward and then turns right walk 4 blocks and terminates the program. It's your turn now.</div>
+</p>
+<button id="close_button" onclick="messagebox_close()">Close</button></div>
+</body>
+</html>
+
+
+

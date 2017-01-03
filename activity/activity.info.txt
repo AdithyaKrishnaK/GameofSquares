@@ -1,0 +1,5 @@
+[Activity]
+name = Game of Squares
+activity_version = 1
+bundle_id = org.sugarlabs.MyActivity
+exec = sugar-activity-web
