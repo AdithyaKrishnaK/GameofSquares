@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+body{
+	background-image:url("lib/texture/stone.jpg");}
+</style>
 <title> The Game of Squares</title>
 <link rel="stylesheet" type="text/css" href="css/css.css">
 <script src="js/script.js">
@@ -8,15 +12,15 @@
 </head>
 
 
-<body onload="loaded()"><div>
-<div id="content" style="opacity:0.4;"><button onclick="execute()" id="ebutton">Execute</button>
+<body onload="loaded()" id="btn"><div>
+<div id="content"><button onclick="execute(); dis();" id="ebutton">Execute</button>
 <textarea id="e"></textarea></div>
 <table id="environment">
 </table></div>
 
 
-<div id="message">
-<p id="message_content">
+<div id="message"><div id="con">
+<p id ="message_content">
 <h2>Instructions</h2><div class="t">
 Your aim is to guide the yellow square to the blue one by programming the path of the yellow square. Here are the commands that you can use -</div>
 <br><div class="f">
@@ -34,10 +38,9 @@ walk(4);<br>
 end()
 </h4>
 <div class="t">This means that the yellow square will move 3 blocks foreward and then turns right walk 4 blocks and terminates the program. It's your turn now.</div>
-</p>
+</p></div>
 <button id="close_button" onclick="messagebox_close()">Close</button></div>
 </body>
 </html>
-
 
 
