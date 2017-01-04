@@ -36,17 +36,20 @@ td{
 	padding:20px;
 	transition:background-color 4s}
 
-body{
-	background-image:url("stone.jpg");}
+
 
 @keyframes movement{
 	 from {background-color: #FF5733;}
    	 to {background-color: yellow;}}
-
+.cla{
+animation-name:movement;
+animation-duration:2s;
+}
 @keyframes comp{
 	 from {background-color: #13EEF1;}
    	 to {background-color: #FFFFFF;}}
 #message{
+	
 	overflow:auto;
 	position:absolute;
 	padding:10px;
@@ -83,3 +86,6 @@ h4{
 	font-family: Arial;}
 .t{
 	font-family: Arial;}
+#content{
+	opacity:0.4;
+}
