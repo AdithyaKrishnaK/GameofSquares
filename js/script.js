@@ -1,4 +1,5 @@
-var t_initial,r_initial,t_final,r_final;
+var t_initial, ti, r_initial, ri, t_final, r_final;
+var count;
 function loaded(){
 var table = document.getElementById("environment");
     var header = table.createTBody();
@@ -13,6 +14,8 @@ for (i = 0; i < 25; i++) {
 obstruct();
 target(0);
 target(1);
+count = easy_path(r_initial,t_initial,r_final,t_final); 
+
 }
 
 
@@ -67,7 +70,7 @@ if(guessr==2 && (guessc==2||guessc==3||guessc==4||guessc==5||guessc==6||guessc==
 else if(guessr==3 && (guessc==2||guessc==3||guessc==4||guessc==5||guessc==6||guessc==7||guessc==8||guessc==9||guessc==10||guessc==11||guessc==12||guessc==13||guessc==14||guessc==15||guessc==20||guessc==21||guessc==22||guessc==23)){}
 else if((guessr==4||guessr==5||guessr==6 )&& (guessc==20||guessc==21||guessc==22||guessc==23)){}
 else if ((guessr==9||guessr==10||guessr==11||guessr==12) && (guessc==2||guessc==3||guessc==4||guessc==5||guessc==9||guessc==10||guessc==11||guessc==12||guessc==16||guessc==17||guessc==18||guessc==19)){}
-else if(guessr==r_initial && guessc==t_initial){}
+else if(guessr == r_initial && guessc == t_initial){}
 else{guess = false;}
 if(j == 5){
 switch (f) {
@@ -102,21 +105,27 @@ guess = false;}}
 if(s==0){
 t_initial = guessc;//start point cell
 r_initial = guessr;// start point row
+ti = guessc;
+ri = guessr;
 var k = document.getElementById("environment").rows[guessr].cells[guessc];
 k.style.backgroundColor = "yellow";}else{
+if(guessr == r_initial && guessc == t_initial){
+location.reload();
+}
 t_final = guessc;//target cell
 r_final = guessr;//target row
 var k = document.getElementById("environment").rows[guessr].cells[guessc];
 k.style.backgroundColor = "#13EEF1";}
 }
-
+var count_re = true;
 function execute(){
+
+document.getElementById("ebutton").disabled = true;
 /*
 0 - North 
 1 - East 
 2 - South 
 3 - West
-
 */
 var n = 0;
 var time = 2;
@@ -148,11 +157,18 @@ case 0:
 	}else if(color=="rgb(19, 238, 241)"){
 	document.getElementById("environment").rows[r_initial - 1].cells[t_initial].style.animation = "comp 2s " + time.toString() +"s";
 	r_initial = r_initial - 1;
-	time = time +1;}
+	time = time + 1;}
 	else{
-	document.getElementById("environment").rows[r_initial - 1].cells[t_initial].style.animation = "movement 2s "+time.toString()+"s";
+	
+	document.getElementById("environment").rows[r_initial - 1].cells[t_initial].classList.add("cla");
+	document.getElementById("environment").rows[r_initial - 1].cells[t_initial].style.animationDelay = time.toString()+"s";
+	var element = document.getElementById("environment").rows[r_initial - 1].cells[t_initial];
+	if(count_re == false){
+	element.classList.remove("cla");  
+	void element.offsetWidth;
+ 	element.classList.add("cla");}
 	if(q == 1){
-	document.getElementById("environment").rows[r_initial ].cells[t_initial].style.background = "#FF5733";}
+	document.getElementById("environment").rows[r_initial].cells[t_initial].style.background = "#FF5733";}
 	document.getElementById("environment").rows[r_final].cells[t_final].style.backgroundColor = "#13EEF1";
 	r_initial = r_initial - 1;
  	time = time + 1;}
@@ -173,7 +189,14 @@ case 1:
 	t_initial = t_initial + 1;
 	time = time +1;}
 	else{
-	document.getElementById("environment").rows[r_initial ].cells[t_initial+1].style.animation = "movement 2s "+time.toString()+"s";
+	
+	document.getElementById("environment").rows[r_initial - 1].cells[t_initial].classList.add("cla");
+	document.getElementById("environment").rows[r_initial - 1].cells[t_initial].style.animationDelay = time.toString()+"s";
+	var element = document.getElementById("environment").rows[r_initial - 1].cells[t_initial];
+	if(count_re == false){
+	element.classList.remove("cla");  
+	void element.offsetWidth;
+ 	element.classList.add("cla");}
 	
 	if(q == 1){
 	document.getElementById("environment").rows[r_initial ].cells[t_initial].style.background = "#FF5733";}
@@ -197,7 +220,14 @@ case 2:
 	r_initial = r_initial + 1;
 	time = time +1;}
 	else{
-	document.getElementById("environment").rows[r_initial + 1].cells[t_initial].style.animation = "movement 2s "+time.toString()+"s";
+	
+	document.getElementById("environment").rows[r_initial - 1].cells[t_initial].classList.add("cla");
+	document.getElementById("environment").rows[r_initial - 1].cells[t_initial].style.animationDelay = time.toString()+"s";
+	var element = document.getElementById("environment").rows[r_initial - 1].cells[t_initial];
+	if(count_re == false){
+	element.classList.remove("cla");  
+	void element.offsetWidth;
+ 	element.classList.add("cla");}
 	if(q == 1){
 	document.getElementById("environment").rows[r_initial ].cells[t_initial].style.background = "#FF5733";}
 	document.getElementById("environment").rows[r_final].cells[t_final].style.backgroundColor = "#13EEF1";
@@ -220,7 +250,14 @@ case 3:
 	t_initial = t_initial - 1;
 	time = time +1;}
 	else{
-	document.getElementById("environment").rows[r_initial].cells[t_initial-1].style.animation = "movement 2s "+time.toString()+"s";
+	
+	document.getElementById("environment").rows[r_initial - 1].cells[t_initial].classList.add("cla");
+	document.getElementById("environment").rows[r_initial - 1].cells[t_initial].style.animationDelay = time.toString()+"s";
+	var element = document.getElementById("environment").rows[r_initial - 1].cells[t_initial];
+	if(count_re == false){
+	element.classList.remove("cla");  
+	void element.offsetWidth;
+ 	element.classList.add("cla");}
 	if(q == 1){
 	document.getElementById("environment").rows[r_initial ].cells[t_initial].style.background = "#FF5733";}
 	document.getElementById("environment").rows[r_final].cells[t_final].style.backgroundColor = "#13EEF1";
@@ -248,17 +285,49 @@ case "W":
 	direction = 3;}
 }else if(s[y].search("end()")!= -1)
 {
-if(r_initial==r_final && t_initial==t_final)
-{	setTimeout(function(){ 
-	document.getElementById("environment").rows[r_final].cells[t_final].style.backgroundColor = "white";
-	}, n * 1000 + 2000);
+	if(r_initial==r_final && t_initial==t_final)
+	{	var mess;
+		var count_true = true;
+		if((y+1) <= count)
+		{
+			mess = "Good Work";
+			count_true = true;
+		}else
+		{
+			mess = "Good work but you can do better. Try to reduce the size of the program";
+			count_true = false;
+			count_re = false;
+		}
+		setTimeout(function()
+		{ 
+			document.getElementById("environment").rows[r_final].cells[t_final].style.backgroundColor = "white";
+			document.getElementById("ebutton").disabled = false;
+		}, n * 1000 + 2000);
+	
+	
+		setTimeout(function(){ 
+		messagebox(mess);
+		if(count_true==false){
+			document.getElementById("environment").rows[r_final].cells[t_final].style.backgroundColor = "#13EEF1";
+			t_initial = ti;
+			r_initial = ri;
+			document.getElementById("environment").rows[r_initial].cells[t_initial].style.backgroundColor = "yellow";
+		}
+		}, n * 1000 + 4000);
+		break;
+	}
+	else
+	{
+	setTimeout(function(){ count_re = false;
+	document.getElementById("environment").rows[r_initial].cells[t_initial].style.background = "yellow";
+	document.getElementById("ebutton").disabled = false;}, n * 1000 + 2000);
 	setTimeout(function(){ 
-	messagebox("Good Work");
-	}, n * 1000 + 4000);
-	break;}
-	else{
-	setTimeout(function(){ 
-	document.getElementById("environment").rows[r_initial].cells[t_initial].style.background = "yellow";}, n * 1000 + 2000);
+	messagebox("You have to reach the target");
+	document.getElementById("environment").rows[r_initial].cells[t_initial].style.background = "#FF5733"
+	document.getElementById("environment").rows[r_final].cells[t_final].style.backgroundColor = "#13EEF1";
+	t_initial = ti;
+	r_initial = ri;
+	document.getElementById("environment").rows[r_initial].cells[t_initial].style.backgroundColor = "yellow";}, n * 1000 + 4000);
 	break;}
 }
 else{break;}
@@ -268,20 +337,228 @@ break;
 }
 }
 }
-
+function dis(){document.getElementById("ebutton").disabled = true;
+}
 function messagebox(l){
 document.getElementById("message").style.visibility = "visible";
-document.getElementById("message_content").innerHTML = l;
+document.getElementById("con").innerHTML = l;
 document.getElementById("content").style.opacity = "0.4";
 document.getElementById("environment").style.opacity = "0.4";
-document.getElementById("message_content").style.fontSize = "xx-large";
-document.getElementById("message_content").style.textAlign = "center";
+document.getElementById("con").style.fontSize = "xx-large";
+document.getElementById("con").style.textAlign = "center";
+document.getElementById("con").style.position = "relative";
+document.getElementById("con").style.top = "100px";
 }
 function messagebox_close(){
 document.getElementById("message").style.visibility = "hidden";
 document.getElementById("content").style.opacity = "1";
 document.getElementById("environment").style.opacity = "1";
+document.getElementById("content").style.opacity = "1";
 }
+
+
+
+
+function easy_path(x1,y1,x2,y2)
+{
+	
+
+
+	var shortx = x2 - x1;
+	var shorty = y2 - y1;
+	var x3 = x1;
+	var y3 = y1;
+	var i;
+	var breakx = false;
+
+
+if(shortx>0)
+{
+	for(i=1;i<=shortx;i++)
+	{
+		x3 = x3 + 1;
+		var element = document.getElementById("environment").rows[x1 + i].cells[y1];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			
+			break;
+		}
+	}
+
+}
+else if(shortx<0)
+{
+
+	for(i=Math.abs(shortx);i>=1;i--)
+	{x3 = x3 - 1;
+		var element = document.getElementById("environment").rows[x1 - i].cells[y1];
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			
+			break;
+		}
+	}
+
+}
+
+if(shorty>0)
+{
+	for(i=1;i<=shorty;i++)
+	{
+		y3 = y3 + 1;
+		var element = document.getElementById("environment").rows[x3].cells[y1+i];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			
+			break;
+		}
+	}
+
+}
+else if(shorty<0)
+{
+
+	for(i=Math.abs(shorty);i>=1;i--)
+	{y3 = y3 - 1;
+		var element = document.getElementById("environment").rows[x3].cells[y1-i];
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			
+			break;
+		}
+	}
+
+}
+if(x3==x2&&y2==y3){
+breakx = true;
+}else
+{x3 = x1;
+y3 = y1
+if(shorty>0)
+{
+	for(i=1;i<=shorty;i++)
+	{
+		y3 = y3 + 1;
+		var element = document.getElementById("environment").rows[x1].cells[y1+i];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			
+			break;
+		}
+	}
+
+}
+else if(shorty<0)
+{
+
+	for(i=Math.abs(shorty);i>=1;i--)
+	{y3 = y3 - 1;
+		var element = document.getElementById("environment").rows[x1].cells[y1-i];
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			
+			break;
+		}
+	}
+
+}
+
+if(shortx>0)
+{
+	for(i=1;i<=shortx;i++)
+	{
+		x3 = x3 + 1;
+		var element = document.getElementById("environment").rows[x1 + i].cells[y3];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			
+			break;
+		}
+	}
+
+}
+else if(shortx<0)
+{
+
+	for(i=Math.abs(shortx);i>=1;i--)
+	{x3 = x3 - 1;
+		var element = document.getElementById("environment").rows[x1 - i].cells[y3];
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			
+			break;
+		}
+	}
+
+}
+if(x3==x2&&y3==y2){
+breakx = true;
+}
+
+
+}
+
+
+
+
+
+
+if(x1==x2||y1==y2){
+return 3;
+}else
+if(breakx == true){
+return 5;
+}else
+{
+return 7;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
