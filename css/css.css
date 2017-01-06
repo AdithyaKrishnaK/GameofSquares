@@ -1,6 +1,6 @@
 textarea{
 	width:275px;
-	height:539px;
+	height:526.5px;
 	padding:8px 15px;
 	position:absolute;
 	top:68.5px;
@@ -35,9 +35,22 @@ td{
 	border:1px solid #C0B9B8;
 	padding:20px;
 	transition:background-color 4s}
-
-
-
+@keyframes marke{
+	 from {background-color: #E3148E;}
+   	 to {background-color: #4CAF50;}}
+.cla1{
+	animation-name:marke;
+	animation-duration:2s;
+}
+#task_bar{
+	background-color: #AEAAAC;
+	padding: 5px;
+	width:297px;
+	position:absolute;
+	top:595px;
+	font-size:18px;
+	left: 10px;
+}
 @keyframes movement{
 	 from {background-color: #FF5733;}
    	 to {background-color: yellow;}}
@@ -59,8 +72,10 @@ animation-duration:2s;
 	left:450px;
 	background-color:white;}
 #message_content{
+	
 	position:absolute;
 	top:10px;}
+
 #close_button{
 	position: absolute;
 	right:10px;
