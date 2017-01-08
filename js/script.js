@@ -22,7 +22,7 @@ target(0);
 target(1);
 count = easy_path(r_initial,t_initial,r_final,t_final); 
 	document.getElementById("lin").innerHTML = count.toString();
-	document.getElementById("num").innerHTML = no_moves;
+	document.getElementById("num").innerHTML = no_moves.toString();
 	if (Math.floor((Math.random() * 2))%2==0) {
 		document.getElementById("rc").innerHTML = "Row : "+r_final.toString();
 	} else {
