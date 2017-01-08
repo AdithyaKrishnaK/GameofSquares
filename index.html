@@ -4,6 +4,7 @@
 <style>
 body{
 	background-image:url("lib/texture/stone.jpg");}
+
 </style>
 <title> The Game of Squares</title>
 <link rel="stylesheet" type="text/css" href="css/css.css">
@@ -12,20 +13,27 @@ body{
 </head>
 
 
-<body onload="loaded()" id="btn"><div>
+<body onload="loaded()" id="btn">
+<img src = "lib/texture/rosetta.png"class = "compass" id="co"><div>
 <div id="content"><button onclick="execute(); dis();" id="ebutton">Execute</button>
 <textarea id="e"></textarea>
 <div id="task_bar">
-
+<p id="lin" class="ite"> </p>
+<p id="num" class="ite"> </p>
+<p id="rc"class="ite"> </p>
+<img class="img2" id="compass_logo"src = "lib/texture/compass.png" onclick="compass_show()">
+<img class="img1" src="lib/texture/help.png" onclick="help()" > 
 </div>
 </div>
 <table id="environment">
-</table></div>
+</table>
+</div>
 
 
 <div id="message"><div id="con">
-		
-<p id ="message_content">
+		</div>
+<div id ="message_content">
+<p >
 <h2>Instructions</h2><div class="t">
 Your aim is to guide the yellow square to the target by programming the path of the yellow square. 
 The target is invisible but you will be be given either column or row of the target, maximum number of commands you can use and the minimum number of steps you can walk in the bottom of the editor.
