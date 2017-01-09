@@ -37,7 +37,10 @@ body{
 <h2>Instructions</h2><div class="t">
 Your aim is to guide the yellow square to the target by programming the path of the yellow square. 
 The target is invisible but you will be be given either column or row of the target, maximum number of commands you can use and the minimum number of steps you can walk in the bottom of the editor.
-Note that the number representing first row and first column is 0.  
+Note that the number representing first row and first column is 0. If you succeed, in the next level you will have to navigate to the target through the purple square.
+You will be be given either column or row of the target, maximum number of commands you can use and the minimum number of steps you can walk in the bottom of the editor.
+You can click on the compass to get your bearing and if you click it again the compass will be hidden. The first number in the bottom of the editor
+is the maximum number of commands you can use. The second number is the minimum number of steps you have to walk.
  Here are the commands that you can use -</div>
 <br><div class="f">
 <b>walk(20);</b> <div style="text-indent: 15px;">- This means that the yellow square will move 20 steps foreward.</div><br>
@@ -55,8 +58,8 @@ end()
 </h4>
 <div class="t">This means that the yellow square will move 3 blocks foreward and then turns right walk 4 blocks and 
 	terminates the program. It's your turn now. <br>For help click the help icon at the bottom of the editor</div>
-</p></div>
-<button id="close_button" onclick="messagebox_close()">Close</button></div>
+</p></div><div class="freeze">
+<button id="close_button" onclick="messagebox_close()">Close</button></div></div>
 </body>
 </html>
 

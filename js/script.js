@@ -21,13 +21,15 @@ obstruct();
 target(0);
 target(1);
 count = easy_path(r_initial,t_initial,r_final,t_final); 
+
 	document.getElementById("lin").innerHTML = count.toString();
 	document.getElementById("num").innerHTML = no_moves.toString();
-	if (Math.floor((Math.random() * 2))%2==0) {
-		document.getElementById("rc").innerHTML = "Row : "+r_final.toString();
-	} else {
-		document.getElementById("rc").innerHTML = "Column : "+t_final.toString();
-	}
+if (Math.floor((Math.random() * 50)+1)%2==0) {
+	document.getElementById("rc").innerHTML = "Row : "+r_final.toString();
+} else {
+	document.getElementById("rc").innerHTML = "Column : "+t_final.toString();
+}
+
 }
 
 
@@ -35,35 +37,35 @@ function obstruct(){
 for (r=9;r<13;r++){
 for (i = 2; i < 6; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     o.style.backgroundImage="url('lib/texture/stone2.jpg')";
+     //o.style.backgroundImage="url('lib/texture/stone2.jpg')";
      o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
 for (r=9;r<13;r++){
 for (i = 9; i < 13; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     o.style.backgroundImage="url('lib/texture/stone2.jpg')";
+     //o.style.backgroundImage="url('lib/texture/stone2.jpg')";
      o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
 for (r=9;r<13;r++){
 for (i = 16; i < 20; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     o.style.backgroundImage="url('lib/texture/stone2.jpg')";
+    // o.style.backgroundImage="url('lib/texture/stone2.jpg')";
       o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
 for (r=3;r<7;r++){
 for (i = 20; i < 24; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     o.style.backgroundImage="url('lib/texture/stone2.jpg')";
+    // o.style.backgroundImage="url('lib/texture/stone2.jpg')";
      o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
 for (r=2;r<4;r++){
 for (i = 2; i < 16; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     o.style.backgroundImage="url('lib/texture/stone2.jpg')";
+    // o.style.backgroundImage="url('lib/texture/stone2.jpg')";
      o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
@@ -392,7 +394,7 @@ case "W":
 	{
 	setTimeout(function(){ count_re = false;
 	count_true = false;
-	alert();
+	
 	document.getElementById("environment").rows[r_initial].cells[t_initial].style.background = "yellow";
 	document.getElementById("ebutton").disabled = false;
 	document.getElementById("ebutton").style.opacity = "1";}, n * 1000 + 2000);
@@ -469,14 +471,17 @@ if(shortx>0)
 {x_dir = 1;
 	for(i=1;i<=shortx;i++)
 	{
-		x3 = x3 + 1;
+		
 		var element = document.getElementById("environment").rows[x1 + i].cells[y1];			
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		
+		
 		if(color == "rgb(192, 185, 184)")
 		{
+		
 			break1 = true;
 			break;
-		}
+		}else{x3 = x3 + 1;}
 	}
 
 }
@@ -484,14 +489,18 @@ else if(shortx<0)
 {x_dir = -1;
 
 	for(i=Math.abs(shortx);i>=1;i--)
-	{x3 = x3 - 1;
+	{
 		var element = document.getElementById("environment").rows[x1 - i].cells[y1];
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		
+		
 		if(color == "rgb(192, 185, 184)")
 		{
+			
 			break1 = true;
 			break;
-		}
+		}else{x3 = x3 - 1;
+			}
 	}
 
 }
@@ -500,14 +509,18 @@ if(shorty>0)
 {y_dir = 1;
 	for(i=1;i<=shorty;i++)
 	{
-		y3 = y3 + 1;
+		
 		var element = document.getElementById("environment").rows[x3].cells[y1+i];			
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		
+		
 		if(color == "rgb(192, 185, 184)")
 		{
+			
 			break2 = true;
 			break;
-		}
+		}else{y3 = y3 + 1;
+			}
 	}
 
 }
@@ -515,14 +528,18 @@ else if(shorty<0)
 {y_dir = -1;
 
 	for(i=Math.abs(shorty);i>=1;i--)
-	{y3 = y3 - 1;
+	{
 		var element = document.getElementById("environment").rows[x3].cells[y1-i];
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		
+		
 		if(color == "rgb(192, 185, 184)")
 		{
+			
 			break2 = true;
 			break;
-		}
+		}else{y3 = y3 - 1;
+			}
 	}
 
 }
@@ -538,11 +555,14 @@ if(shorty>0)
 		y3 = y3 + 1;
 		var element = document.getElementById("environment").rows[x1].cells[y1+i];			
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		
+		
 		if(color == "rgb(192, 185, 184)")
 		{
+			
 			break3 = true;
 			break;
-		}
+		}else{}
 	}
 
 }
@@ -553,11 +573,14 @@ else if(shorty<0)
 	{y3 = y3 - 1;
 		var element = document.getElementById("environment").rows[x1].cells[y1-i];
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		
+		
 		if(color == "rgb(192, 185, 184)")
 		{
+			
 			break3 = true;
 			break;
-		}
+		}else{}
 	}
 
 }
@@ -569,11 +592,14 @@ if(shortx>0)
 		x3 = x3 + 1;
 		var element = document.getElementById("environment").rows[x1 + i].cells[y3];			
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		
+		
 		if(color == "rgb(192, 185, 184)")
 		{
+			
 			break4 = true;
 			break;
-		}
+		}else{}
 	}
 
 }
@@ -584,11 +610,13 @@ else if(shortx<0)
 	{x3 = x3 - 1;
 		var element = document.getElementById("environment").rows[x1 - i].cells[y3];
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+			
 		if(color == "rgb(192, 185, 184)")
 		{
+			
 			break4 = true;
 			break;
-		}
+		}else{}
 	}
 
 }
@@ -634,32 +662,61 @@ for (var i = 20; i < 25; i++) {
 	}
 }
 if (shortx == 0) {
-	no_moves = shorty;
+	var tr = false;
+	for(var g = y1;g<=y2;g++){
+		var element = document.getElementById("environment").rows[x1].cells[g];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			tr=true;
+			break;
+		}
+	}
+	if (tr==false) {
+	no_moves = Math.abs(shorty);	
 	return 3;
+	}
+	
 } else if(shorty == 0)	{
-	no_moves = shortx;
-	return 3;
+		var tr = false;
+	for(var g = x1;g<=x2;g++){
+		var element = document.getElementById("environment").rows[g].cells[y1];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			tr=true;
+			break;
+		}
+	}
+	if (tr==false) {
+	no_moves = Math.abs(shortx);	
+	return 3 ;
+	}
+	
 }else if ((break1==false && break2==false)||(break3==false && break4==false)) {
 	no_moves = Math.abs(shortx)+Math.abs(shorty);
 	return 5;
-}else if(break1 = true && break2 == true && break3 == true && break4 == true )
+}else if((break1 = true && break3 == true) || (break1 == true && break4 == true )||(break2 = true && break3 == true) || (break2 == true && break4 == true ))
 {
+	
+	no_moves = Math.abs(shortx)+Math.abs(shorty);
 	var k = document.getElementById("environment").rows[x1].cells[y1];
 	var k1 = document.getElementById("environment").rows[x2].cells[y2];
 	if(k.style.fontSize == k1.style.fontSize){
-		alert();
 		return 9;
-	}else{return 7;}
-	no_moves = Math.abs(shortx)+Math.abs(shorty);
+		}else{return 7;}
+	
 }else if(break1==true && break4==true && break2 == false)
 {
-	return 7;
 	no_moves = scan("x",x1,y1,shortx)
+	return 7;
+	
 }
 else if(break3==true && break2==true && break4 == false)
 {
-	return 7;
 	no_moves = scan("y",x1,y1,shorty)
+	return 7;
+	
 }
 
 
@@ -685,7 +742,8 @@ function next_level()
 	count = easy_path(r_initial,t_initial,nav_r,nav_t) + easy_path(nav_r,nav_t,r_final,t_final);
 	document.getElementById("lin").innerHTML = count.toString();
 	document.getElementById("num").innerHTML = no_moves;
-	if (Math.floor((Math.random() * 2))%2==0) {
+
+	if (Math.floor((Math.random() * 50)+1)%2==0) {
 		document.getElementById("rc").innerHTML = "Row : "+r_final.toString();
 	} else {
 		document.getElementById("rc").innerHTML = "Column : "+t_final.toString();
