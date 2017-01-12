@@ -21,7 +21,7 @@ obstruct();
 target(0);
 target(1);
 count = easy_path(r_initial,t_initial,r_final,t_final); 
-
+var count1 = scan2(r_initial,t_initial,r_final,t_final); 
 	document.getElementById("lin").innerHTML = count.toString();
 	document.getElementById("num").innerHTML = no_moves.toString();
 if (Math.floor((Math.random() * 50)+1)%2==0) {
@@ -44,7 +44,7 @@ for (i = 2; i < 6; i++) {
 for (r=9;r<13;r++){
 for (i = 9; i < 13; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-     //o.style.backgroundImage="url('lib/texture/stone2.jpg')";
+    // o.style.backgroundImage="url('lib/texture/stone2.jpg')";
      o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
@@ -65,7 +65,7 @@ for (i = 20; i < 24; i++) {
 for (r=2;r<4;r++){
 for (i = 2; i < 16; i++) {
      var o=document.getElementById("environment").rows[r].cells[i];
-    // o.style.backgroundImage="url('lib/texture/stone2.jpg')";
+   // o.style.backgroundImage="url('lib/texture/stone2.jpg')";
      o.style.border="none";
      o.style.backgroundColor="rgb(192, 185, 184)";
 }}
@@ -155,9 +155,19 @@ var obstruction = false;
 var q;
 var code = document.getElementById("e").value;
 var s = code.split(";");
-var y;
 var t = s.length - 1; 
-
+var check_if =false;
+for(zz=0;zz<=t;zz++){
+	
+if (s[zz]=="end()") {
+	check_if = true;
+}
+if (check_if==true) {
+	break;
+}else{messagebox("end() missing");}}
+if (check_if==false) {
+	break;
+}
 for(y=0;y<=t;y++){
 if(s[y].search("walk")!= -1){
 var steps = s[y].split("(");
@@ -466,47 +476,48 @@ function easy_path(x1,y1,x2,y2)
 	var i;
 	var breakx = false;
 
-
 if(shortx>0)
-{x_dir = 1;
+{y_dir = 1;
 	for(i=1;i<=shortx;i++)
 	{
 		
 		var element = document.getElementById("environment").rows[x1 + i].cells[y1];			
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
-		
-		
 		if(color == "rgb(192, 185, 184)")
 		{
 		
 			break1 = true;
 			break;
-		}else{x3 = x3 + 1;}
+			
+		}else{x3 = x3 + 1;
+			}
 	}
 
 }
 else if(shortx<0)
-{x_dir = -1;
-
+{y_dir = -1;
+var l = 1;
 	for(i=Math.abs(shortx);i>=1;i--)
 	{
-		var element = document.getElementById("environment").rows[x1 - i].cells[y1];
+		var element = document.getElementById("environment").rows[x1 - l].cells[y1];
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
-		
+		l= l+1;
 		
 		if(color == "rgb(192, 185, 184)")
 		{
 			
 			break1 = true;
+			
 			break;
 		}else{x3 = x3 - 1;
-			}
+		}
 	}
 
 }
-
+if(break1==false){
 if(shorty>0)
-{y_dir = 1;
+{x_dir = 1;
+	
 	for(i=1;i<=shorty;i++)
 	{
 		
@@ -525,13 +536,14 @@ if(shorty>0)
 
 }
 else if(shorty<0)
-{y_dir = -1;
+{x_dir = - 1;
+var l = 1;
 
 	for(i=Math.abs(shorty);i>=1;i--)
-	{
-		var element = document.getElementById("environment").rows[x3].cells[y1-i];
+	{ 
+		var element = document.getElementById("environment").rows[x3].cells[y1-l];
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
-		
+		l=l+1
 		
 		if(color == "rgb(192, 185, 184)")
 		{
@@ -543,6 +555,7 @@ else if(shorty<0)
 	}
 
 }
+}
 if(x3==x2&&y2==y3){
 breakx = true;
 }else
@@ -552,7 +565,7 @@ if(shorty>0)
 {
 	for(i=1;i<=shorty;i++)
 	{
-		y3 = y3 + 1;
+		
 		var element = document.getElementById("environment").rows[x1].cells[y1+i];			
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
 		
@@ -562,34 +575,34 @@ if(shorty>0)
 			
 			break3 = true;
 			break;
-		}else{}
+		}else{y3 = y3 + 1;}
 	}
 
 }
 else if(shorty<0)
 {
-
+var l = 1;
 	for(i=Math.abs(shorty);i>=1;i--)
-	{y3 = y3 - 1;
-		var element = document.getElementById("environment").rows[x1].cells[y1-i];
+	{
+		var element = document.getElementById("environment").rows[x1].cells[y1-l];
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
-		
+		l = l+1;
 		
 		if(color == "rgb(192, 185, 184)")
 		{
 			
 			break3 = true;
 			break;
-		}else{}
+		}else{y3 = y3 - 1;}
 	}
 
 }
-
+if(break3==false){
 if(shortx>0)
 {
 	for(i=1;i<=shortx;i++)
 	{
-		x3 = x3 + 1;
+		
 		var element = document.getElementById("environment").rows[x1 + i].cells[y3];			
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
 		
@@ -599,26 +612,27 @@ if(shortx>0)
 			
 			break4 = true;
 			break;
-		}else{}
+		}else{x3 = x3 + 1;}
 	}
 
 }
 else if(shortx<0)
-{
+{var l = 1;
 
 	for(i=Math.abs(shortx);i>=1;i--)
-	{x3 = x3 - 1;
-		var element = document.getElementById("environment").rows[x1 - i].cells[y3];
+	{
+		var element = document.getElementById("environment").rows[x1 - l].cells[y3];
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
-			
+			l=l+1;
 		if(color == "rgb(192, 185, 184)")
 		{
 			
 			break4 = true;
 			break;
-		}else{}
+		}else{x3 = x3 - 1;}
 	}
 
+}
 }
 if(x3==x2&&y3==y2){
 breakx = true;
@@ -626,6 +640,7 @@ breakx = true;
 
 
 }
+
 for (var i = 6; i < 9; i++) {
 	for (var g = 9; g < 13; g++) {
 		document.getElementById("environment").rows[g].cells[i].style.fontSize = "20px";
@@ -662,15 +677,18 @@ for (var i = 20; i < 25; i++) {
 	}
 }
 if (shortx == 0) {
+	var gh = y1;
 	var tr = false;
-	for(var g = y1;g<=y2;g++){
-		var element = document.getElementById("environment").rows[x1].cells[g];			
+	for(var g = y1;g<=y1+Math.abs(shorty);g++){
+		var element = document.getElementById("environment").rows[x1].cells[gh];			
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
 		if(color == "rgb(192, 185, 184)")
 		{
 			tr=true;
 			break;
-		}
+		}if (shorty < 0) {
+			gh=gh-1;
+		}else{gh=gh+1;}
 	}
 	if (tr==false) {
 	no_moves = Math.abs(shorty);	
@@ -678,15 +696,19 @@ if (shortx == 0) {
 	}
 	
 } else if(shorty == 0)	{
-		var tr = false;
-	for(var g = x1;g<=x2;g++){
-		var element = document.getElementById("environment").rows[g].cells[y1];			
+	var gh = x1;
+	var tr = false;
+	for(var g = x1;g<=x1+Math.abs(shortx);g++){
+		
+		var element = document.getElementById("environment").rows[gh].cells[y1];			
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
 		if(color == "rgb(192, 185, 184)")
 		{
 			tr=true;
 			break;
-		}
+		}if (shortx < 0) {
+			gh=gh-1;
+		}else{gh=gh+1;}
 	}
 	if (tr==false) {
 	no_moves = Math.abs(shortx);	
@@ -696,7 +718,7 @@ if (shortx == 0) {
 }else if ((break1==false && break2==false)||(break3==false && break4==false)) {
 	no_moves = Math.abs(shortx)+Math.abs(shorty);
 	return 5;
-}else if((break1 = true && break3 == true) || (break1 == true && break4 == true )||(break2 = true && break3 == true) || (break2 == true && break4 == true ))
+}/*else if((break1 = true && break3 == true) || (break1 == true && break4 == true )||(break2 = true && break3 == true) || (break2 == true && break4 == true ))
 {
 	
 	no_moves = Math.abs(shortx)+Math.abs(shorty);
@@ -717,8 +739,16 @@ else if(break3==true && break2==true && break4 == false)
 	no_moves = scan("y",x1,y1,shorty)
 	return 7;
 	
-}
+}*/
+else if(break2 == true && break3==true)
+{var x =scan("x",x1,y1,shortx);
+return x;
 
+}else if(break1 == true && break4==true)
+{
+	var x =scan("y",x1,y1,shorty);
+	return x;
+} else{return 1 ;}
 
 }
 
@@ -751,94 +781,226 @@ function next_level()
 	
 
 }
+function scan2(x1,y1,x2,y2)
+{
+		
+	shortx = Math.abs(x2 - x1);
+	shorty = Math.abs(y2 - y1);
+	var gh = x1;
+	var tr = false;
+	var turn = 1;
 
+	
+	for(var g = x1;g<=x1+Math.abs(shortx)-1;g++){
+		var element = document.getElementById("environment").rows[gh+y_dir].cells[y1];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			
+			tr= true
+			break;
+		}else{element.style.backgroundColor="green";}
+		if (y_dir < 0) {
+			gh=gh-1;
+		}else{gh=gh+1;}
+	}
+	var ob=0;;
+	if (tr == true) {alert(y1);
+		alert( y1+Math.abs(shorty));
+		for(var g = 1;g<=Math.abs(shorty);g++){
+		var element = document.getElementById("environment").rows[gh + y_dir].cells[y1+(g*x_dir)];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			ob=ob+1;
+			element.style.backgroundColor="blue";
+		}else{}
+		
+	}
+	}
+	/*
+	if (tr==false) {
+		gh = y1;
+		turn = turn + 1;
+		for(var g = y1;g<=y1+Math.abs(shorty)-1;g++){
+		
+		var element = document.getElementById("environment").rows[x2].cells[gh+x_dir];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			tr= true
+			break;
+		}else{element.style.backgroundColor="green";}
+		if (x_dir < 0) {
+			gh=gh-1;
+		}else{gh=gh+1;}
+		}
+	if (tr == true)
+	{
+		var back = 1;
+		gh =x2;
+		var hurdle = false;
+		for(var g = x2;g<=x1+Math.abs(shortx);g++)
+		{
+		
+		var element = document.getElementById("environment").rows[gh].cells[y1+x_dir];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		 document.getElementById("environment").rows[gh].cells[y1].style.backgroundColor = "blue";
+		if(color == "rgb(192, 185, 184)")
+		{
+		back = back + 1;
+		}else{hurdle = true;
+			break;}
+		if (y_dir < 0) {
+			gh=gh+1;
+		}else{gh=gh-1;}
+	}
+		if (hurdle == true) {
+			var hurdle1 = false;
+			var v = gh;
+		for(var g = y1;g<=x1+Math.abs(shorty);g++){
+		
+		var element = document.getElementById("environment").rows[x2-v].cells[gh+x_dir];			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		document.getElementById("environment").rows[x2-v].cells[gh+x_dir].style.backgroundColor ="orange";
+		if(color == "rgb(192, 185, 184)")
+		{
+			hurdle1 = true
+			break;
+		}if (x_dir < 0) {
+			gh=gh-1;
+		}else{gh=gh+1;}
+		}
+		if (hurdle1==false) { var hurdle2 = false;
+		for(var g = x2-v;g<=x2;g++){
+		
+		var element = document.getElementById("environment").rows[gh+y_dir].cells[y1];	
+		document.getElementById("environment").rows[gh+y_dir].cells[y1].style.backgroundColor="red";			
+		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+		if(color == "rgb(192, 185, 184)")
+		{
+			hurdle2=true;
+			break;
+		}if (y_dir < 0) {
+			gh=gh-1;
+		}else{gh=gh+1;}
+	}
+	if (hurdle2==false) {
+		no_moves = shortx + shorty;
+		return 7;
+	}	
+	
+	}
+
+
+
+		}
+	}
+	}*/
+}
 function scan(l,r,t,d)
 {
-	var n_cells1 , n_cells2;
-	if(l=="x")
-	{
-		for (var i = 0; i < 14; i++)
-		 {
-			var element = document.getElementById("environment").rows[r + x_dir].cells[t];			
-			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
-			if(color == "rgb(192, 185, 184)")
-			{
-				break;
-			}else{	r = r - 1;}
-		}
-		for (var i = 1; i < 14; i++)
-		 {
-			var element = document.getElementById("environment").rows[r-1].cells[t+i];			
-			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
-			if(color == "rgb(192, 185, 184)")
-			{
-				n_cells1 = n_cells1 + 1;
-				
-			}else{break;}
-		}
-		for (var i = 1; i < 14; i++)
-		 {
-			var element = document.getElementById("environment").rows[r-1].cells[t-i];			
-			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
-			if(color == "rgb(192, 185, 184)")
-			{
-				n_cells2 = n_cells2 + 1;
-				
-			}else{break;}
-		}
-	if (x_dir>0) {
-		n_cells1 = n_cells1 + 1 + n_cells1 - d ;
-		n_cells2 = n_cells2 + 1 + n_cells2 + d ;
-	} else {
-		n_cells1 = n_cells1 + 1 + n_cells1 + d ;
-		n_cells2 = n_cells2 + 1 + n_cells2 - d ;
-	}
-	if (n_cells1>n_cells2) {
-		return n_cells2;
-	}else{return n_cells1;}
-
-	}else
+	var n_cells1 = 0 , n_cells2 = 0;
 	if(l=="y")
 	{
 		for (var i = 0; i < 14; i++)
 		 {
-			var element = document.getElementById("environment").rows[r].cells[t-1];			
+			var element = document.getElementById("environment").rows[r + y_dir].cells[t];			
 			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+
 			if(color == "rgb(192, 185, 184)")
 			{
+				
 				break;
-			}else{	t = t - 1;}
+			}else{
+				r = r - 1;}
 		}
+	
 		for (var i = 1; i < 14; i++)
 		 {
-			var element = document.getElementById("environment").rows[r+1].cells[t-1];			
+			var element = document.getElementById("environment").rows[r+y_dir].cells[t+i];			
 			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+			
 			if(color == "rgb(192, 185, 184)")
-			{
+			{ 
 				n_cells1 = n_cells1 + 1;
 				
 			}else{break;}
 		}
 		for (var i = 1; i < 14; i++)
 		 {
-			var element = document.getElementById("environment").rows[r-1].cells[t-1];			
+			var element = document.getElementById("environment").rows[r+y_dir].cells[t-i];			
 			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
 			if(color == "rgb(192, 185, 184)")
 			{
+						
 				n_cells2 = n_cells2 + 1;
 				
 			}else{break;}
 		}
+		
 	if (y_dir>0) {
-		n_cells1 = n_cells1 + 1 + n_cells1 - d ;
-		n_cells2 = n_cells2 + 1 + n_cells2 + d ;
+		n_cells1 = n_cells1 + 2 + n_cells1 - d ;
+		n_cells2 = n_cells2 + 2 + n_cells2 + d ;
 	} else {
-		n_cells1 = n_cells1 + 1 + n_cells1 + d ;
-		n_cells2 = n_cells2 + 1 + n_cells2 - d ;
+		n_cells1 = n_cells1 + 2 + n_cells1 - d ;
+		n_cells2 = n_cells2 + 2 + n_cells2 + d ;
 	}
+	
 	if (n_cells1>n_cells2) {
-		return n_cells2;
-	}else{return n_cells1;}
+		return n_cells2 + Math.abs(d);
+	}else{return n_cells1+ Math.abs(d);}
+
+}else
+	if(l=="x")
+	{ var t_actual = t;
+		for (var i = 0; i < 14; i++)
+		 {
+			var element = document.getElementById("environment").rows[r].cells[t+x_dir];			
+			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+			if(color == "rgb(192, 185, 184)")
+			{
+				break;
+			}else{
+				t = t - 1;}
+		}
+		
+		for (var i = 1; i < 14; i++)
+		 {
+			var element = document.getElementById("environment").rows[r + i].cells[t + x_dir];			
+			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+			if(color == "rgb(192, 185, 184)")
+			{
+				
+				n_cells1 = n_cells1 + 1;
+				
+			}else{break;}
+		}
+		for (var i = 1; i < 14; i++)
+		 {
+			var element = document.getElementById("environment").rows[r-i].cells[t + x_dir];			
+			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
+			if(color == "rgb(192, 185, 184)")
+			{
+				
+				n_cells2 = n_cells2 + 1;
+			
+			}else{break;}
+		}
+		
+		
+	if (x_dir>0) {
+		n_cells1 = n_cells1 + 2 + n_cells1 - d ;
+		n_cells2 = n_cells2 + 2 + n_cells2 + d ;
+	} else {
+		n_cells1 = n_cells1 + 2 + n_cells1 - d ;
+		n_cells2 = n_cells2 + 2 + n_cells2 + d ;
+	}
+
+	
+	if (n_cells1>n_cells2) {
+		return n_cells2 + Math.abs(d);
+	}else{return n_cells1+ Math.abs(d);}
 
 	}
 
