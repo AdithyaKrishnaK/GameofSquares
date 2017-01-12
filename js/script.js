@@ -416,7 +416,18 @@ break;
 }
 }
 }
-function dis(){document.getElementById("ebutton").disabled = true;
+
+function dis(){
+	var tr = false;
+	document.getElementById("ebutton").disabled = true;
+	var code = document.getElementById("e").value;
+	var s = code.split(";");
+	for(var i = 0; i<s.length;i++){
+		if (s[y].search("end()")!= -1) {
+			tr = true;
+		}
+	}
+	if(tr = false){messagebox("end() missing");}else{execute();}
 }
 
 function messagebox(l){
