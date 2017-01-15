@@ -498,6 +498,9 @@ function hint()
 
 
 function messagebox(l){
+	if (next == true ) {
+	document.getElementById("quit_button").style.visibility = "visible";	
+}
 document.getElementById("message_content").style.visibility = "hidden";
 document.getElementById("message").style.visibility = "visible";
 document.getElementById("con").innerHTML = l;
@@ -512,6 +515,7 @@ document.getElementById("con").style.top = "100px";
 
 function messagebox_close(){
 if (next == true ) {
+	document.getElementById("quit_button").style.visibility = "hidden";
 	next = false;
 	next1 =true;
 	next_level();
@@ -828,6 +832,20 @@ function scan2(x1,y1,x2,y2)
 	if(shortx<0){y_dir = -1;}else{y_dir = 1}
 var stepsv = 0;
 var stepsh = 0;
+	var xd,yd;
+	if (shorty>0) {
+		xd = 1;
+	}else{xd = -1;}
+	if (shortx>0) {
+		yd = 1;
+	}else{yd = -1;}
+if (xx ==yy && xx == "21px"){
+			var ax = true;
+			scan("y",x1,y1,Math.abs(shorty),xd,yd,ax);
+			return ;
+		}
+		
+		
 	for(var g = x1;g<=x1+Math.abs(shortx)-1;g++){
 		var element = document.getElementById("environment").rows[gh+y_dir].cells[y1];			
 		var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
@@ -844,13 +862,7 @@ var stepsh = 0;
 	}
 	var row_n = gh;
 	var ob = false;
-	var xd,yd;
-	if (shorty>0) {
-		xd = 1;
-	}else{xd = -1;}
-	if (shortx>0) {
-		yd = 1;
-	}else{yd = -1;}
+
 	var m = 0;
 	if (tr == true) {	
 	for(var i = 1;i<=Math.abs(shorty);i++){
@@ -1190,7 +1202,7 @@ if (ob2 == true) {
 
 if (no_lines ==0&&n_repeat ==1) {
 	scan2(x2,y2,x1,y1);
-	if (no_lines==0) {no_moves = 7;
+	if (no_lines==0) {no_lines = 7;
 		var xx =document.getElementById("environment").rows[x1].cells[y1].style.fontSize;
 		var yy = document.getElementById("environment").rows[x2].cells[y2].style.fontSize;
 		if(xx == yy &&yy=="20px")
@@ -1205,11 +1217,9 @@ if (no_lines ==0&&n_repeat ==1) {
 		n_cells2 = n_cells2 + 2 + n_cells2 + Math.abs(shorty) ;
 	}
 		if (n_cells1>n_cells2) {
-		no_moves =  n_cells2+Math.abs(shortx) ;
-	}else{no_moves = n_cells1+Math.abs(shortx);}
-		}else if (xx ==yy && xx == "21px"){
-			var ax = true;
-		}
+		no_moves =  n_cells2 + Math.abs(shortx) ;
+	}else{no_moves = n_cells1 + Math.abs(shortx);}
+		}else{
 			if (x2>x1) {
 				yd = 1;
 			} else {
@@ -1220,16 +1230,16 @@ if (no_lines ==0&&n_repeat ==1) {
 			} else {
 				xd = -1;
 			}
-		scan("y",x1,y1,Math.abs(shorty),xd,yd,ax);
+		scan("y",x1,y1,Math.abs(shorty),xd,yd,ax);}
 		if (no_moves>0) {
-		no_moves = Math.abs(shortx);}
-		no_lines = 9;	
+		no_moves += Math.abs(shortx);
+		no_lines = 9;	}
 		}
 
 		if(no_moves <= 0){
 			scan("x",x1,y1,Math.abs(shortx),xd,yd,ax);
 			if (no_moves>0 ) {
-			no_moves = Math.abs(shorty);
+			no_moves += Math.abs(shorty);
 			no_lines = 9;
 			}
 
@@ -1379,5 +1389,8 @@ function compass_show(){
 	}x = x + 1;
 }
 
+function game_quit(){
+	window.close();
+}
 
 

@@ -147,7 +147,19 @@ animation-duration:2s;
     	text-decoration: none;
    	display: inline-block;
     	font-size: 16px;}
-
+#quit_button{
+	position: absolute;
+	visibility: hidden;
+	right: 80px;
+	border:none;
+	top:5px;
+	padding:5px 10px;
+	color: white;
+	background-color: #4CAF50; 
+       	text-align: center;
+    	text-decoration: none;
+   	display: inline-block;
+    	font-size: 16px;}
 #message_content{
 	font-size:18px;
 	font-family: Arial;}
