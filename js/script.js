@@ -161,6 +161,10 @@ for(y=0;y<=t;y++){
 if(s[y].search("walk")!= -1){
 var steps = s[y].split("(");
 var last_split = steps[1].split(")");
+if (last_split[1]!="") {
+	messagebox("Syntax error");
+	obstruction =true;
+}
 var number = parseInt(last_split[0]);
 n = n + number;
 switch(direction){
@@ -489,10 +493,11 @@ var n_click = 0;
 function hint()
 {
 	if (n_click==0) {
+		document.getElementById("show_button").style.visibility ="hidden";
 		document.getElementById("environment").rows[r_final].cells[t_final].style.visibility ="visible";
 		setTimeout(function(){
 		document.getElementById("environment").rows[r_final].cells[t_final].style.visibility ="hidden";}, 2000);
-		document.getElementById("show_button").classList.remove("img3"); 
+		
 	}
 	n_click += 1;
 }
@@ -783,7 +788,7 @@ if (shortx == 0) {
 function next_level()
 {
 	document.getElementById("environment").rows[r_final].cells[t_final].style.backgroundColor = "#FF5733";
-	
+	document.getElementById("show_button").visibility ="visible";
 	r_initial = 0;
 	t_initial = 0;
 	r_final = 0;
@@ -1236,6 +1241,7 @@ if (no_lines ==0&&n_repeat ==1) {
 		scan("y",x1,y1,Math.abs(shorty),xd,yd,ax);}
 		if (no_moves>0) {
 		no_moves += Math.abs(shortx);
+		no_moves += 1;
 		no_lines = 9;	}
 		}
 
@@ -1244,6 +1250,7 @@ if (no_lines ==0&&n_repeat ==1) {
 			if (no_moves>0 ) {
 			no_moves += Math.abs(shorty);
 			no_lines = 9;
+			no_moves += 1;
 			}
 
 			if(no_moves == 0||no_moves === undefined||no_lines === undefined){location.reload();}
@@ -1263,7 +1270,12 @@ function scan(l,r,t,d,dirx,diry,ax)
 			 if (r==13) {
 				 break;
 			 }
-			var element = document.getElementById("environment").rows[r + diry].cells[t];			
+			 try {
+				 var element = document.getElementById("environment").rows[r + diry].cells[t];	
+			 } catch (error) {
+				 
+			 }
+					
 			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
 
 			if(color == "rgb(192, 185, 184)")
@@ -1303,7 +1315,7 @@ function scan(l,r,t,d,dirx,diry,ax)
 			}else{break;}
 		}
 		
-	if ((diry>0 && dirx<0)||(diry<0 && dirx>0)||(diry>0 && dirx>0)) {
+	if ((diry>0 && dirx<0)||(diry<0 && dirx>0)) {
 		n_cells1 = n_cells1 + 2 + n_cells1 - d ;
 		n_cells2 = n_cells2 + 2 + n_cells2 + d ;
 	} else {
@@ -1345,6 +1357,9 @@ function scan(l,r,t,d,dirx,diry,ax)
 		}
 		for (var i = 1; i < 14; i++)
 		 {
+			 if (r==0) {
+				 break;
+			 }
 			var element = document.getElementById("environment").rows[r-i].cells[t + dirx];			
 			var color = window.getComputedStyle(element, null).getPropertyValue("background-color");
 			if(color == "rgb(192, 185, 184)")

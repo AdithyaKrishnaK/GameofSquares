@@ -71,10 +71,8 @@ td{
 	padding: 4.5px;
 	bottom: 1px;
 }
+
 .img3{
-	
-}
-#show_button{
 	width: 9%;
 	float: left;
 	position: absolute;
@@ -82,15 +80,10 @@ td{
 	padding: 4.5px;
 	bottom: 1px;
 }
-.img1 :hover{
+img :hover{
 	background-color:#1DBAF5;
 }
-.img2 :hover{
-	background-color:#1DBAF5;
-}
-.img3 :hover{
-	background-color:#1DBAF5;
-}
+
 #task_bar p{
 	padding: 5px;
 	margin: 0px;
@@ -112,7 +105,6 @@ animation-duration:2s;
 	 from {background-color: #13EEF1;}
    	 to {background-color: #FFFFFF;}}
 #message{
-	
 	overflow:auto;
 	position:absolute;
 	padding:10px;
