@@ -72,6 +72,9 @@ td{
 	bottom: 1px;
 }
 .img3{
+	
+}
+#show_button{
 	width: 9%;
 	float: left;
 	position: absolute;
@@ -79,7 +82,13 @@ td{
 	padding: 4.5px;
 	bottom: 1px;
 }
-img:hover{
+.img1 :hover{
+	background-color:#1DBAF5;
+}
+.img2 :hover{
+	background-color:#1DBAF5;
+}
+.img3 :hover{
 	background-color:#1DBAF5;
 }
 #task_bar p{

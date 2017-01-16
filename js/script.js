@@ -447,7 +447,10 @@ case "W":
 	document.getElementById("environment").rows[r_initial].cells[t_initial].style.backgroundColor = "yellow";}, n * 1000 + 4000);
 	break;}
 }
-else{break;}
+else{
+	messagebox("Syntax error:command does not exist")
+	obstruction = true;
+	break;}
 
 if(obstruction==true){
 	document.getElementById("ebutton").disabled = false;
@@ -489,7 +492,7 @@ function hint()
 		document.getElementById("environment").rows[r_final].cells[t_final].style.visibility ="visible";
 		setTimeout(function(){
 		document.getElementById("environment").rows[r_final].cells[t_final].style.visibility ="hidden";}, 2000);
-		
+		document.getElementById("show_button").classList.remove("img3"); 
 	}
 	n_click += 1;
 }
